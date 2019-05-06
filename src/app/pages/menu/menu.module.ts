@@ -10,19 +10,22 @@ import { MenuPage } from './menu.page';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/menu/main',
-    pathMatch: 'full'
-  },
-  {
-   path: '',
-   component: MenuPage,
-   children: [
-     {
-       path: 'main',
-       loadChildren: '../main/main.module#MainPageModule'
-     }
-   ]
- }
+     component: MenuPage,
+     children: [
+       {
+         path: 'first',
+         loadChildren: '../first-with-tabs/first-with-tabs.module#FirstWithTabsPageModule'
+       },
+       {
+         path: 'second',
+         loadChildren: '../second/second.module#SecondPageModule'
+       },
+       {
+        path: 'second/details',
+        loadChildren: '../details/details.module#DetailsPageModule'
+        }
+     ]
+   }
 ];
 
 @NgModule({

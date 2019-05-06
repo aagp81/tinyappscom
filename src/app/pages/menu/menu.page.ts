@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, RouterEvent } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -6,32 +7,26 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./menu.page.scss'],
 })
 export class MenuPage implements OnInit {
+  selectedPath = '';
 
   pages = [
     {
-      title: 'Main',
-      url: '/menu/main',
-      icon: 'home'
+      title: 'First Page with Tabs',
+      url: '/menu/first'
     },
     {
-      title: 'Cool Frameworks',
-      children: [
-        {
-          title: 'Ionic',
-          url: '/menu/ionic',
-          icon: 'logo-ionic'
-        },
-        {
-          title: 'Flutter',
-          url: '/menu/flutter',
-          icon: 'logo-google'
-        },
-      ]
+      title: 'Second Page blank',
+      url: '/menu/second'
     }
   ];
 
-  constructor() { }
-
+  constructor(private router: Router) {
+    this.router.events.subscribe((event: RouterEvent) => {
+      if (event && event.url) {
+        this.selectedPath = event.url;
+      }
+    });
+  }
   ngOnInit() {
   }
 
